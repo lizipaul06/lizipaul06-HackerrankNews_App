@@ -7,12 +7,12 @@ const StoryContainer = () => {
   const [selectedStoryTitle, setSelectedStoryTitle] = useState("");
   const { data: stories, isLoading } = useGetStories();
 
-  const selectedStory = stories?.find(
+  const selectedStory = stories.find(
     (story) => story.title === selectedStoryTitle
   );
 
   if (isLoading) {
-    <Spinner />;
+    return <Spinner />;
   }
   return (
     <Card>
@@ -20,12 +20,11 @@ const StoryContainer = () => {
         <Heading> Latest stories</Heading>
       </CardHeader>
       <CardBody>
-        {stories && (
-          <StorySelector
-            stories={stories}
-            setSelectedStoryTitle={setSelectedStoryTitle}
-          />
-        )}
+        <StorySelector
+          stories={stories}
+          setSelectedStoryTitle={setSelectedStoryTitle}
+          isDisabled={isLoading}
+        />
 
         {selectedStory && <StoryDetail story={selectedStory} />}
       </CardBody>
