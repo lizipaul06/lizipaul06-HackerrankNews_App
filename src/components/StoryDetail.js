@@ -1,19 +1,20 @@
-import React from 'react';
+import { Text, Button, Link } from "@chakra-ui/react";
 
-const StoryDetail = (props) => {
-  if(!props.story){return null}
+const StoryDetail = ({ story }) => {
+  const { by, text, score, url } = story;
 
+  return (
+    <>
+      <Text> By: {by} </Text>
+      <Text> {text} </Text>
+      <Text> Score: {score} </Text>
+      <Button colorScheme="teal" size="xs">
+        <Link isExternal href={url}>
+          View the Story
+        </Link>
+      </Button>
+    </>
+  );
+};
 
-  return(
-    <div>
-      <p> {props.story.title} </p>
-      <p> {props.story.by} </p>
-      <p> {props.story.text} </p>
-      <p> {props.story.score} </p>
-      <a href={props.story.url}> View the Story</a>
-    </div>
-  )
-}
-
-
-export default StoryDetail;
+export { StoryDetail };

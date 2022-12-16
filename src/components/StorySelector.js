@@ -1,22 +1,25 @@
-import React from 'react';
+import { Select } from "@chakra-ui/react";
 
-const StorySelector = (props) => {
-    if(!props.stories){return null}
-  const options = props.stories.map(story =>{
-    return <option value={story.title} key={story.id}> {story.title} </option>
-  })
+const StorySelector = ({ stories, setSelectedStoryTitle }) => {
+  const handleChange = (event) => {
+    setSelectedStoryTitle(event.target.value);
+  };
 
+  return (
+    <Select
+      id="story-selector"
+      onChange={handleChange}
+      placeholder="Select option"
+    >
+      {stories.map(({ title, id }) => {
+        return (
+          <option value={title} key={id}>
+            {title}
+          </option>
+        );
+      })}
+    </Select>
+  );
+};
 
-  function handleChange(event){
-    props.onStorySelected(event.target.value)
-  }
-
-  return(
-    <select id="story-selector" onChange = {handleChange} defaultValue="default">
-     <option disabled value="default"> Choose a story..</option>
-     {options}
-     </select>
-  )
-}
-
-export default StorySelector;
+export { StorySelector };
