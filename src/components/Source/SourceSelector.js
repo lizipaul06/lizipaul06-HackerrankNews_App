@@ -1,9 +1,12 @@
 import { Select } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const SourceSelector = ({ sources, setSelectedSource, isDisabled }) => {
+  const { t } = useTranslation("source");
+
   const handleChange = (event) => {
     const selectedSource = sources.find(
-      (source) => source.name == event.target.value
+      (source) => source.name === event.target.value
     );
     setSelectedSource(selectedSource);
   };
@@ -12,7 +15,7 @@ const SourceSelector = ({ sources, setSelectedSource, isDisabled }) => {
     <Select
       id="source-selector"
       onChange={handleChange}
-      placeholder="Select option"
+      placeholder={t("select-option")}
       isDisabled={isDisabled}
     >
       {sources.map(({ name, id }) => {

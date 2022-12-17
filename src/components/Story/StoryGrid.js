@@ -2,8 +2,8 @@ import { StoryDetail } from "./StoryDetail";
 import { Grid, GridItem, Spinner } from "@chakra-ui/react";
 import { useGetStories } from "../../services/useGetStories";
 
-const StoryGrid = ({ selectedSource }) => {
-  const { data: stories, isLoading } = useGetStories(selectedSource);
+const StoryGrid = ({ sourceId }) => {
+  const { data: stories, isLoading } = useGetStories(sourceId);
 
   if (isLoading) {
     return <Spinner />;
