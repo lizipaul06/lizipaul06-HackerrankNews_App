@@ -3,11 +3,16 @@ import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 
 const StoryDetail = ({ story }) => {
-  const { author, url, publishedAt } = story;
+  const { author, url, publishedAt, title } = story;
   const { t } = useTranslation("story");
 
   return (
     <>
+      {title && (
+        <Text>
+          {t("title")} {title}
+        </Text>
+      )}
       {author && (
         <Text>
           {t("author")} {author}

@@ -21,7 +21,7 @@ const SourceDetail = ({ source }) => {
       {category && (
         <Text>
           {t("category")}
-          {category}{" "}
+          {category}
         </Text>
       )}
       <Button colorScheme="teal" size="xs">
