@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { StoryDetail, StorySelector } from "../components";
-import { useGetStories } from "../services/useGetStories";
+import { SourceDetail, StoryGrid, SourceSelector } from "../components";
 import { Spinner, Card, CardHeader, CardBody, Heading } from "@chakra-ui/react";
+import { useGetStorySources } from "../services/useGetStorySources";
 
 const StoryContainer = () => {
-  const [selectedStoryTitle, setSelectedStoryTitle] = useState("");
-  const { data: stories, isLoading } = useGetStories();
-
-  const selectedStory = stories.find(
-    (story) => story.title === selectedStoryTitle
-  );
-
+  const [selectedSource, setSelectedSource] = useState("");
+  debugger;
+  const { data: sources, isLoading } = useGetStorySources();
   if (isLoading) {
     return <Spinner />;
   }
@@ -20,13 +16,18 @@ const StoryContainer = () => {
         <Heading> Latest stories</Heading>
       </CardHeader>
       <CardBody>
-        <StorySelector
-          stories={stories}
-          setSelectedStoryTitle={setSelectedStoryTitle}
+        <SourceSelector
+          sources={sources}
+          setSelectedSource={setSelectedSource}
           isDisabled={isLoading}
         />
+        <SourceDetail source={selectedSource} />
 
-        {selectedStory && <StoryDetail story={selectedStory} />}
+        {selectedSource && (
+          <>
+            <StoryGrid selectedSource={selectedSource} />
+          </>
+        )}
       </CardBody>
     </Card>
   );
