@@ -1,9 +1,10 @@
 import { Text, Button, Link } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
+import { article } from "../../services/useGetStories";
 
-const StoryDetail = ({ story }) => {
-  const { author, url, publishedAt, title } = story;
+const StoryDetail: React.FC<{ article: article }> = ({ article }) => {
+  const { author, url, publishedAt, title } = article;
   const { t } = useTranslation("story");
 
   return (

@@ -2,7 +2,7 @@ import { StoryDetail } from "./StoryDetail";
 import { Grid, GridItem, Spinner } from "@chakra-ui/react";
 import { useGetStories } from "../../services/useGetStories";
 
-const StoryGrid = ({ sourceId }) => {
+const StoryGrid: React.FC<{sourceId: string}> = ({ sourceId }) => {
   const { data: stories, isLoading } = useGetStories(sourceId);
 
   if (isLoading) {
@@ -13,7 +13,7 @@ const StoryGrid = ({ sourceId }) => {
       {stories.map((story) => {
         return (
           <GridItem>
-            <StoryDetail story={story} />
+            <StoryDetail article={story} />
           </GridItem>
         );
       })}

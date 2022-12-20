@@ -3,11 +3,13 @@ import { SourceDetail, StoryGrid, SourceSelector } from "../components";
 import { Spinner, Card, CardHeader, CardBody, Heading } from "@chakra-ui/react";
 import { useGetStorySources } from "../services/useGetStorySources";
 import { useTranslation } from "react-i18next";
+import { source } from "../services/useGetStorySources";
 
 const StoryContainer = () => {
-  const [selectedSource, setSelectedSource] = useState();
+  const [selectedSource, setSelectedSource] = useState<source | undefined>();
   const { data: sources, isLoading } = useGetStorySources();
   const { t } = useTranslation("story");
+
   if (isLoading) {
     return <Spinner />;
   }

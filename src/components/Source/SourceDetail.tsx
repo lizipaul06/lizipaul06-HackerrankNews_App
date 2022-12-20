@@ -1,7 +1,8 @@
 import { Text, Button, Link } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { source } from "../../services/useGetStorySources";
 
-const SourceDetail = ({ source }) => {
+const SourceDetail: React.FC<{ source: source }> = ({ source }) => {
   const { name, description, url, category } = source;
   const { t } = useTranslation("source");
 
